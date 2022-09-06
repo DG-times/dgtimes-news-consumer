@@ -1,1 +1,1 @@
-# dgtimes-news-insertor
+# dgtimes-newsDto-consumer
