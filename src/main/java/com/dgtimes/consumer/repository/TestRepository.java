@@ -1,4 +1,4 @@
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.repository;
 
 /*
 import org.springframework.data.jpa.repository.JpaRepository;

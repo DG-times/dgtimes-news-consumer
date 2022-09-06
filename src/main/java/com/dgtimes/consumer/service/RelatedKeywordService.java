@@ -1,5 +1,6 @@
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.service;
 
+import com.dgtimes.consumer.repository.RelatedKeywordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

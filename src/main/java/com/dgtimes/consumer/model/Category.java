@@ -1,4 +1,4 @@
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.model;
 
 /*
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.model;
 
 import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;

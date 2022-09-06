@@ -1,4 +1,4 @@
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.async;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;

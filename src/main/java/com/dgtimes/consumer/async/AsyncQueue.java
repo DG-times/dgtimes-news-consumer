@@ -1,8 +1,8 @@
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.async;
 
 import java.util.*;
 
-class AsyncQueue<E> {
+public class AsyncQueue<E> {
 
     Queue<E> elementQueue = new LinkedList<>();
 

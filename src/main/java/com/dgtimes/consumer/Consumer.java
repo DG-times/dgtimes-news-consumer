@@ -1,11 +1,12 @@
 package com.dgtimes.consumer;
 import java.util.*;
 
+import com.dgtimes.consumer.async.AsyncQueue;
+import com.dgtimes.consumer.model.NewsDto;
+import com.dgtimes.consumer.service.RelatedKeywordService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
