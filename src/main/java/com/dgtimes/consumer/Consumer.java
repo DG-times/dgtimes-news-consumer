@@ -2,8 +2,8 @@ package com.dgtimes.consumer;
 import java.util.*;
 
 import com.dgtimes.consumer.async.AsyncQueue;
-import com.dgtimes.consumer.model.NewsDto;
-import com.dgtimes.consumer.service.RelatedKeywordService;
+import com.dgtimes.consumer.model.News;
+import com.dgtimes.consumer.repository.NewsRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,60 +24,30 @@ public class Consumer<E> {
 
     private static final Logger logger = LoggerFactory.getLogger(Consumer.class);
 
-    private final RelatedKeywordService relatedKeywordService;
+    private final NewsRepository newsRepository;
 
-    private AsyncQueue<NewsDto> queue = new AsyncQueue<>();
+    private AsyncQueue<News> queue = new AsyncQueue<>();
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-
     @RabbitListener(queues = "TEST_QUEUE")
     public void handler(String message) throws IOException {
-        NewsDto newsDto = objectMapper.readValue(message, NewsDto.class);
+        News newsDto = objectMapper.readValue(message, News.class);
         queue.add(newsDto);
     }
 
     @Scheduled(cron = "* * * * * *")
     @Async
-    public void saveNews() throws InterruptedException{
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-
-        List<NewsDto> newsDtoList = queue.pollList();
-        newsDtoList.stream().forEach(x -> readJSON(x.getKeywords()));
-
-        stopWatch.stop();
-        long totalTimeMillis = stopWatch.getTotalTimeMillis();
-        logger.info("Current Thread : {} - {} - {}개", Thread.currentThread().getName(), totalTimeMillis, newsDtoList.size());
-    }
-
-    public void setRelatedKeyword(List<String> keywords) {
-        for (int a = 0; a < keywords.size()-1; a++) {
-            String pickKeyword = keywords.get(a);
-            for (int b = a+1; b < keywords.size(); b++) {
-                relatedKeywordService.searchRelatedValue(pickKeyword,keywords.get(b));
-            }
-        }
-    }
-
-    // ["정치", "트럼프", "힐러리"]
-    public void readJSON(List<String> keyword_list) {
-        keyword_list.stream().forEach(key -> relatedKeywordService.searchValue(key));
-        setRelatedKeyword(keyword_list);
-    }
-
-    /*
-    public void saveNews() throws InterruptedException {
+    public void saveNews() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
 
         List<News> newsDtoList = queue.pollList();
-        testRepository.saveAll(newsDtoList);
+        newsRepository.saveAll(newsDtoList);
 
         stopWatch.stop();
         long totalTimeMillis = stopWatch.getTotalTimeMillis();
         logger.info("Current Thread : {} - {} - {}개", Thread.currentThread().getName(), totalTimeMillis, newsDtoList.size());
     }
-     */
 
 }

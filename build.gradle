@@ -20,8 +20,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-	implementation 'org.springframework.boot:spring-boot-starter-data-neo4j'
-	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	runtimeOnly 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {

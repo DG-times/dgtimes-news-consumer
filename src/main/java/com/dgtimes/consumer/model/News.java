@@ -1,6 +1,6 @@
-/*
-package com.dgtimes.consumer;
+package com.dgtimes.consumer.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +11,7 @@ import org.hibernate.id.enhanced.SequenceStyleGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Getter
@@ -39,12 +40,10 @@ public class News {
     private String writer;
     private String publisher;
     @Column(columnDefinition = "TIMESTAMP")
-    private Timestamp publishedDate;
-    @ManyToOne()
-    private Category category;
-    private String tag;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date publishedDate;
+    private long category;
     private String thumbnailUrl;
-    private String newsUrl;
+    @Column(length = 1000)
+    private String mainUrl;
 }
-*
- */
