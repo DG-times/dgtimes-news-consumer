@@ -14,9 +14,9 @@ public class AsyncConfig extends AsyncConfigurerSupport {
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(10);
-        executor.setQueueCapacity(500);
+        executor.setCorePoolSize(100);
+        executor.setMaxPoolSize(150);
+        executor.setQueueCapacity(1000);
         executor.setThreadNamePrefix("dgtimes-async-");
         executor.initialize();
         return executor;

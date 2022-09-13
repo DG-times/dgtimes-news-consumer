@@ -1,6 +1,5 @@
-package com.dgtimes.consumer.repository;
+package com.dgtimes.consumer.news;
 
-import com.dgtimes.consumer.model.News;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NewsRepository extends JpaRepository<News, Long> {

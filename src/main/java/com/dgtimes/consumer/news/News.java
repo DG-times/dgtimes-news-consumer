@@ -1,4 +1,4 @@
-package com.dgtimes.consumer.model;
+package com.dgtimes.consumer.news;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
