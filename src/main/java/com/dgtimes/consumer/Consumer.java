@@ -83,7 +83,7 @@ public class Consumer<E> {
 
         List<String> keywordList = new ArrayList<>();
 
-        if(keywordList.size() == 0) {
+        if(searchLogList.size() == 0) {
             logger.info("WARING : 최근 검색 기록이 없습니다.");
             return null;
         }
